@@ -46,9 +46,9 @@ GtMapperLoader class >> generateGeometry: aGeometryJSON for: aMapperClass [
 	aType := aGeometryJSON at: 'type'.
 	
 	aGeometryTypeClass := (aType = 'MultiPolygon')
-		ifTrue: [ GtMapperMultiPolygonGeometry ]
+		ifTrue: [ GtMapperGeoJSONMultiPolygon ]
 		ifFalse: [ (aType = 'Polygon')
-			ifTrue: [ GtMapperPolygonGeometry ]
+			ifTrue: [ GtMapperGeoJSONPolygon ]
 			ifFalse: [ self error: ('Unknown geometry type {1}' format: aType) ] ].
 
 	theCoordinates := aGeometryJSON at: 'coordinates'.

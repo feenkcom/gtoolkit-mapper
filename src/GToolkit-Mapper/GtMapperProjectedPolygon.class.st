@@ -1,28 +1,27 @@
 Class {
-	#name : #GtMapperPolygonGeometry,
-	#superclass : #GtMapperGeometry,
+	#name : #GtMapperProjectedPolygon,
+	#superclass : #GtMapperProjectedGeometry,
 	#instVars : [
-		'points'
+		'projectedPoints'
 	],
 	#category : #'GToolkit-Mapper-Geometries'
 }
 
-{ #category : #'instance creation' }
-GtMapperPolygonGeometry class >> from: aCollectionOfPoints [
-	^ self new points: (aCollectionOfPoints first
-		collect: [ :eachRawPoint | eachRawPoint first @ eachRawPoint second])
+{ #category : #converting }
+GtMapperProjectedPolygon >> asPoints [
+	^ self projectedPoints collect: #asPoint
 ]
 
 { #category : #geometry }
-GtMapperPolygonGeometry >> bottomLeft [
+GtMapperProjectedPolygon >> bottomLeft [
 	<return: #Point>
 	| x y |
 	
-	x := self points
+	x := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float infinity into: [ :min :each | min min: each x ] ].
 
-	y := self points
+	y := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float negativeInfinity into: [ :min :each | min max: each y ] ].
 		
@@ -30,15 +29,15 @@ GtMapperPolygonGeometry >> bottomLeft [
 ]
 
 { #category : #geometry }
-GtMapperPolygonGeometry >> bottomRight [
+GtMapperProjectedPolygon >> bottomRight [
 	<return: #Point>
 	| x y |
 	
-	x := self points
+	x := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float negativeInfinity into: [ :min :each | min max: each x ] ].
 		
-	y := self points
+	y := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float negativeInfinity into: [ :min :each | min max: each y ] ].
 		
@@ -46,28 +45,28 @@ GtMapperPolygonGeometry >> bottomRight [
 ]
 
 { #category : #geometry }
-GtMapperPolygonGeometry >> bounds [
+GtMapperProjectedPolygon >> bounds [
 	<return: #Rectangle>
 
 	^ self topLeft corner: self bottomRight
 ]
 
 { #category : #geometry }
-GtMapperPolygonGeometry >> center [
+GtMapperProjectedPolygon >> center [
 	<return: #Point>
 
 	^ self bounds center
 ]
 
 { #category : #geometry }
-GtMapperPolygonGeometry >> extent [
+GtMapperProjectedPolygon >> extent [
 	<return: #Point>
 
 	^ self bounds extent
 ]
 
 { #category : #'gt-extension' }
-GtMapperPolygonGeometry >> gtGeometryIn: aView [
+GtMapperProjectedPolygon >> gtGeometryIn: aView [
 	<gtView>
 	
 	^ aView explicit
@@ -75,23 +74,23 @@ GtMapperPolygonGeometry >> gtGeometryIn: aView [
 		priority: 10;
 		stencil: [ BlElement new
 			size: self extent;
-			geometry: (BlPolygon vertices: (self translatedBy: self topLeft negated) points);
+			geometry: (BlPolygon vertices: (self translatedBy: self topLeft negated) asPoints);
 			background: (Color gray alpha: 0.4);
 			asScalableElement ]
 ]
 
 { #category : #'gt-extension' }
-GtMapperPolygonGeometry >> gtPointsIn: aView [
+GtMapperProjectedPolygon >> gtPointsIn: aView [
 	<gtView>
 	
 	^ aView list 
 		title: 'Points';
 		priority: 30;
-		items: [ self points ]
+		items: [ self projectedPoints ]
 ]
 
 { #category : #'gt-extension' }
-GtMapperPolygonGeometry >> gtPropertiesIn: aView [
+GtMapperProjectedPolygon >> gtPropertiesIn: aView [
 	<gtView>
 	
 	^ aView columnedList 
@@ -113,34 +112,32 @@ GtMapperPolygonGeometry >> gtPropertiesIn: aView [
 ]
 
 { #category : #initialization }
-GtMapperPolygonGeometry >> initialize [
+GtMapperProjectedPolygon >> initialize [
 	super initialize.
 	
-	points := #()
+	projectedPoints := #()
 ]
 
 { #category : #accessing }
-GtMapperPolygonGeometry >> points [
-	<return: #Collection of: #Point>
-
-	^ points
+GtMapperProjectedPolygon >> projectedPoints [
+	^ projectedPoints
 ]
 
 { #category : #accessing }
-GtMapperPolygonGeometry >> points: aCollectionOfPoints [
-	points := aCollectionOfPoints
+GtMapperProjectedPolygon >> projectedPoints: anObject [
+	projectedPoints := anObject
 ]
 
 { #category : #geometry }
-GtMapperPolygonGeometry >> topLeft [
+GtMapperProjectedPolygon >> topLeft [
 	<return: #Point>
 	| x y |
 	
-	x := self points
+	x := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float infinity into: [ :min :each | min min: each x ] ].
 		
-	y := self points
+	y := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float infinity into: [ :min :each | min min: each y ] ].
 		
@@ -148,15 +145,15 @@ GtMapperPolygonGeometry >> topLeft [
 ]
 
 { #category : #geometry }
-GtMapperPolygonGeometry >> topRight [
+GtMapperProjectedPolygon >> topRight [
 	<return: #Point>
 	| x y |
 	
-	x := self points
+	x := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float negativeInfinity into: [ :min :each | min max: each x ] ].
 		
-	y := self points
+	y := projectedPoints
 		ifEmpty: [ 0 ]
 		ifNotEmpty: [ :thePoints | thePoints inject: Float infinity into: [ :min :each | min min: each y ] ].
 
@@ -164,6 +161,6 @@ GtMapperPolygonGeometry >> topRight [
 ]
 
 { #category : #converting }
-GtMapperPolygonGeometry >> translatedBy: aPoint [
-	^ self class new points: (self points collect: [ :eachPoint | eachPoint + aPoint ])
+GtMapperProjectedPolygon >> translatedBy: aPoint [
+	^ self class new projectedPoints: (self projectedPoints collect: [ :eachPoint | eachPoint translatedBy: aPoint ])
 ]
