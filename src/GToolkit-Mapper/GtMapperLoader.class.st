@@ -23,7 +23,7 @@ GtMapperLoader class >> generateCountryClass: aCountryName [
 	<return: #Class>
 	| aCountryClassName |
 
-	aCountryClassName := ('GtMapper', (aCountryName asCamelCase copyWithoutAll: '+-/\*~<>=@,%|&?!_.:''')) asSymbol.
+	aCountryClassName := ('GtMapper', (aCountryName asCamelCase copyWithoutAll: '+-/\*~<>()=@,%|&?!_.:''')) asSymbol.
 	
 	self environment
 		at: aCountryClassName
