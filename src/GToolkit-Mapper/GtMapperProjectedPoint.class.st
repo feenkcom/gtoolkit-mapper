@@ -14,8 +14,22 @@ GtMapperProjectedPoint class >> fromPoint: aPoint [
 ]
 
 { #category : #converting }
+GtMapperProjectedPoint >> asBlocGeometry [
+	<return: #BlGeometry>
+
+	^ BlCircle new
+]
+
+{ #category : #converting }
 GtMapperProjectedPoint >> asPoint [
 	^ x @ y
+]
+
+{ #category : #geometry }
+GtMapperProjectedPoint >> bottomRight [
+	<return: #Point>
+	
+	^ (x + 0.5) @ (y + 0.5)
 ]
 
 { #category : #initialization }
@@ -24,6 +38,13 @@ GtMapperProjectedPoint >> initialize [
 	
 	x := 0.
 	y := 0
+]
+
+{ #category : #geometry }
+GtMapperProjectedPoint >> topLeft [
+	<return: #Point>
+
+	^ (x - 0.5) @ (y - 0.5)
 ]
 
 { #category : #converting }

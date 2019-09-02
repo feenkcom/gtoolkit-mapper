@@ -34,3 +34,10 @@ GtMapperGeoJSONMultiPolygon >> polygons [
 GtMapperGeoJSONMultiPolygon >> polygons: aCollectionOfPolygons [
 	polygons := aCollectionOfPolygons
 ]
+
+{ #category : #'api - projection' }
+GtMapperGeoJSONMultiPolygon >> projected: aProjection [
+	"Return a projected version of GeoJSON geometry by applying a given projection"
+	
+	^ GtMapperProjectedMultiPolygon new projectedPolygons: (self polygons collect: [ :eachGeoPolygon | eachGeoPolygon projected: aProjection ])
+]

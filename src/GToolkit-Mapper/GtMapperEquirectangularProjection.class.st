@@ -26,7 +26,8 @@ GtMapperEquirectangularProjection >> center: anObject [
 GtMapperEquirectangularProjection >> initialize [
 	super initialize.
 	
-	center := GtMapperSpherePoint longitude: 0 latitude: 0
+	center := GtMapperSpherePoint longitude: 0 latitude: 0.
+	scale := 1.0
 ]
 
 { #category : #accessing }
@@ -45,9 +46,9 @@ GtMapperEquirectangularProjection >> projectLongitude: aLongitude latitude: aLat
 	| x y |
 
 	x := (aLongitude - center longitude) * (center latitude cos).
-	y := (aLatitude - center latitude).
+	y := (aLatitude - center latitude) negated.
 
-	^ x @ y
+	^ (x @ y) * scale
 ]
 
 { #category : #accessing }
