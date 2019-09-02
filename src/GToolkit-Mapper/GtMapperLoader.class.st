@@ -23,7 +23,7 @@ GtMapperLoader class >> generateCountryClass: aCountryName [
 	<return: #Class>
 	| aCountryClassName |
 
-	aCountryClassName := ('GtMapper', (aCountryName asCamelCase copyWithoutAll: { $: . $_ })) asSymbol.
+	aCountryClassName := ('GtMapper', (aCountryName asCamelCase copyWithoutAll: '+-/\*~<>=@,%|&?!_.:''')) asSymbol.
 	
 	self environment
 		at: aCountryClassName
@@ -47,7 +47,9 @@ GtMapperLoader class >> generateGeometry: aGeometryJSON for: aMapperClass [
 	
 	aGeometryTypeClass := (aType = 'MultiPolygon')
 		ifTrue: [ GtMapperMultiPolygonGeometry ]
-		ifFalse: [ self error: ('Unknown geometry type {1}' format: aType) ].
+		ifFalse: [ (aType = 'Polygon')
+			ifTrue: [ GtMapperPolygonGeometry ]
+			ifFalse: [ self error: ('Unknown geometry type {1}' format: aType) ] ].
 
 	theCoordinates := aGeometryJSON at: 'coordinates'.
 
