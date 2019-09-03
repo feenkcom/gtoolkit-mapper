@@ -1,12 +1,12 @@
 Class {
 	#name : #GtMapperSwaziland,
 	#superclass : #GtMapperCountry,
-	#category : #'GToolkit-Mapper-Countries'
+	#category : #'GToolkit-Mapper-Widget - UI - Countries'
 }
 
 { #category : #initialization }
-GtMapperSwaziland >> defaultGeometry [
-	<script: 'self basicNew defaultGeometry inspect'>
+GtMapperSwaziland >> defaultCountryGeometry [
+	<script: 'self basicNew defaultCountryGeometry inspect'>
 	"I am automatically generated from GeoJSON"
 	^ GtMapperGeoJSONPolygon from: #(#(#(32.07166548028107 -26.73382008230491) #(31.868060337051077 -27.177927341421277) #(31.282773064913325 -27.285879408478998) #(30.68596194837448 -26.74384531016953) #(30.676608514129637 -26.398078301704608) #(30.949666782359913 -26.022649021104147) #(31.04407962415715 -25.731452325139443) #(31.333157586397906 -25.66019052500895) #(31.837777947728064 -25.84333180105135) #(31.98577924981197 -26.291779880480227) #(32.07166548028107 -26.73382008230491)))
 ]

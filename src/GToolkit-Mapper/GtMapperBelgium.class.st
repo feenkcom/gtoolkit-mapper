@@ -1,12 +1,12 @@
 Class {
 	#name : #GtMapperBelgium,
 	#superclass : #GtMapperCountry,
-	#category : #'GToolkit-Mapper-Countries'
+	#category : #'GToolkit-Mapper-Widget - UI - Countries'
 }
 
 { #category : #initialization }
-GtMapperBelgium >> defaultGeometry [
-	<script: 'self basicNew defaultGeometry inspect'>
+GtMapperBelgium >> defaultCountryGeometry [
+	<script: 'self basicNew defaultCountryGeometry inspect'>
 	"I am automatically generated from GeoJSON"
 	^ GtMapperGeoJSONPolygon from: #(#(#(3.314971144228537 51.345780951536085) #(4.047071160507527 51.26725861266857) #(4.973991326526914 51.475023708698124) #(5.606975945670001 51.037298488969775) #(6.156658155958779 50.80372101501058) #(6.043073357781111 50.128051662794235) #(5.782417433300906 50.09032786722122) #(5.674051954784829 49.529483547557504) #(4.799221632515809 49.985373033236385) #(4.286022983425084 49.907496649772554) #(3.588184441755686 50.37899241800358) #(3.123251580425801 50.780363267614575) #(2.658422071960274 50.79684804951574) #(2.513573032246143 51.14850617126183) #(3.314971144228537 51.345780951536085)))
 ]

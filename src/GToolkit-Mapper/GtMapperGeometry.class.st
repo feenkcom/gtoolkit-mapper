@@ -6,3 +6,10 @@ Class {
 	#superclass : #Object,
 	#category : #'GToolkit-Mapper-Geometries'
 }
+
+{ #category : #converting }
+GtMapperGeometry >> asBlocGeometry [
+	<return: #BlGeometry>
+
+	^ self subclassResponsibility
+]

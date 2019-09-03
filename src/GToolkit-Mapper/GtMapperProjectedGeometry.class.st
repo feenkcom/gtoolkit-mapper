@@ -7,13 +7,6 @@ Class {
 	#category : #'GToolkit-Mapper-Geometries'
 }
 
-{ #category : #converting }
-GtMapperProjectedGeometry >> asBlocGeometry [
-	<return: #BlGeometry>
-
-	^ self subclassResponsibility
-]
-
 { #category : #geometry }
 GtMapperProjectedGeometry >> bottomLeft [
 	<return: #Number>

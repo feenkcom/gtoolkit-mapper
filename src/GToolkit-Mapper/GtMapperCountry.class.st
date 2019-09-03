@@ -3,46 +3,34 @@ I represent a country
 "
 Class {
 	#name : #GtMapperCountry,
-	#superclass : #Object,
-	#instVars : [
-		'geometry'
-	],
-	#category : #'GToolkit-Mapper-Countries'
+	#superclass : #BlElement,
+	#category : #'GToolkit-Mapper-Widget - UI - Countries'
 }
 
-{ #category : #converting }
-GtMapperCountry >> asElement [
-	| aProjectedGeometry |
+{ #category : #'api - country' }
+GtMapperCountry >> countryGeometry [
+	<return: #GtMapperGeometry>
 
-	aProjectedGeometry := self geometry projected: (GtMapperEquirectangularProjection new scale: 50).
-
-	^ BlElement new
-		border: (BlBorder paint: Color white width: 0.5);
-		background: Color veryLightGray;
-		size: aProjectedGeometry extent;
-		relocate: aProjectedGeometry topLeft;
-		geometry: aProjectedGeometry asBlocGeometry
+	^ self viewModel geometry
 ]
 
 { #category : #initialization }
-GtMapperCountry >> defaultGeometry [
+GtMapperCountry >> defaultCountryGeometry [
 	^ GtMapperEmptyGeometry new
-	
 ]
 
-{ #category : #accessing }
-GtMapperCountry >> geometry [
-	<return: #GtMapperGeometry>
-
-	^ geometry ifNil: [ geometry := self defaultGeometry ]
-]
-
-{ #category : #accessing }
-GtMapperCountry >> gtMapFor: aView [
-	<gtView>
+{ #category : #initialization }
+GtMapperCountry >> initialize [
+	super initialize.
 	
-	^ aView explicit
-		title: 'Map';
-		priority: 10;
-		stencil: [ self asElement asScalableElement ]
+	self viewModel: ((GtMapperCountryModel new geometry: self defaultCountryGeometry) +
+		BrButtonModel new +
+		BrLabelModel new +
+		BrIconModel new + 
+		(BrInteractiveModel new
+			addStates: {
+				BrActivationModel new.
+				BrPressModel new.
+				BrHoverModel new.
+			}))
 ]

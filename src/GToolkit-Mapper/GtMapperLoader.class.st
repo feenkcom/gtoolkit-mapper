@@ -32,7 +32,7 @@ GtMapperLoader class >> generateCountryClass: aCountryName [
 	GtMapperCountry subclass: aCountryClassName
 		instanceVariableNames: ''
 		classVariableNames: ''
-		package: 'GToolkit-Mapper-Countries'.
+		package: 'GToolkit-Mapper-Widget - UI - Countries'.
 
 	^ self environment
 		at: aCountryClassName
@@ -53,8 +53,8 @@ GtMapperLoader class >> generateGeometry: aGeometryJSON for: aMapperClass [
 
 	theCoordinates := aGeometryJSON at: 'coordinates'.
 
-	aSourceCode := 'defaultGeometry
-	<script: ''self basicNew defaultGeometry inspect''>
+	aSourceCode := 'defaultCountryGeometry
+	<script: ''self basicNew defaultCountryGeometry inspect''>
 	"I am automatically generated from GeoJSON"
 	^ {1} from: {2}' format: { aGeometryTypeClass name . theCoordinates printStringLimitedTo: Float infinity }.
 
