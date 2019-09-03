@@ -1,6 +1,6 @@
 Class {
 	#name : #GtMapperGeographicalObjectLook,
-	#superclass : #BrLook,
+	#superclass : #BrInteractiveCommonLook,
 	#category : #'GToolkit-Mapper-Widget - Look'
 }
 
