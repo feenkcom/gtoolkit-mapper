@@ -33,6 +33,8 @@ GtMapperLoader class >> generateCountryClass: aCountryName [
 		instanceVariableNames: ''
 		classVariableNames: ''
 		package: 'GToolkit-Mapper-Widget - UI - Countries'.
+		
+	aCountryClassName countryName: aCountryName.
 
 	^ self environment
 		at: aCountryClassName
