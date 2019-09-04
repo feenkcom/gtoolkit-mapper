@@ -11,20 +11,31 @@ Class {
 }
 
 { #category : #'api - country' }
+GtMapperCountry >> countryContinent [
+	<return: #String>
+
+	^ self viewModel properties at: #continent
+]
+
+{ #category : #'api - country' }
 GtMapperCountry >> countryGeometry [
 	<return: #GtMapperGeometry>
 
 	^ self viewModel geometry
 ]
 
-{ #category : #accessing }
+{ #category : #'api - country' }
 GtMapperCountry >> countryName [
-	^ countryName
+	<return: #String>
+
+	^ self defaultCountryName
 ]
 
-{ #category : #accessing }
-GtMapperCountry >> countryName: anObject [
-	countryName := anObject
+{ #category : #'api - country' }
+GtMapperCountry >> countryRegion [
+	<return: #String>
+
+	^ self viewModel properties at: #region_un
 ]
 
 { #category : #initialization }
@@ -33,10 +44,20 @@ GtMapperCountry >> defaultCountryGeometry [
 ]
 
 { #category : #initialization }
+GtMapperCountry >> defaultCountryName [
+	^ 'Country'
+]
+
+{ #category : #initialization }
+GtMapperCountry >> defaultCountryProperties [
+	^ self subclassResponsibility
+]
+
+{ #category : #initialization }
 GtMapperCountry >> initialize [
 	super initialize.
 	
-	self viewModel: ((GtMapperCountryModel new geometry: self defaultCountryGeometry) +
+	self viewModel: ((GtMapperCountryModel new geometry: self defaultCountryGeometry; properties: self defaultCountryProperties) +
 		BrButtonModel new +
 		BrLabelModel new +
 		BrIconModel new + 
