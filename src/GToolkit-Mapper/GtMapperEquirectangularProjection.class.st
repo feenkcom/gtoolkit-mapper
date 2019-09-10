@@ -2,9 +2,6 @@ Class {
 	#name : #GtMapperEquirectangularProjection,
 	#superclass : #GtMapperProjection,
 	#instVars : [
-		'yaw',
-		'roll',
-		'pitch',
 		'scale',
 		'center',
 		'tanslation'
@@ -18,8 +15,8 @@ GtMapperEquirectangularProjection >> center [
 ]
 
 { #category : #accessing }
-GtMapperEquirectangularProjection >> center: anObject [
-	center := anObject
+GtMapperEquirectangularProjection >> center: aGtMapperSpherePoint [
+	center := aGtMapperSpherePoint
 ]
 
 { #category : #initialization }
@@ -28,16 +25,6 @@ GtMapperEquirectangularProjection >> initialize [
 	
 	center := GtMapperSpherePoint longitude: 0 latitude: 0.
 	scale := 1.0
-]
-
-{ #category : #accessing }
-GtMapperEquirectangularProjection >> pitch [
-	^ pitch
-]
-
-{ #category : #accessing }
-GtMapperEquirectangularProjection >> pitch: anObject [
-	pitch := anObject
 ]
 
 { #category : #'api - projection' }
@@ -52,41 +39,11 @@ GtMapperEquirectangularProjection >> projectLongitude: aLongitude latitude: aLat
 ]
 
 { #category : #accessing }
-GtMapperEquirectangularProjection >> roll [
-	^ roll
-]
-
-{ #category : #accessing }
-GtMapperEquirectangularProjection >> roll: anObject [
-	roll := anObject
-]
-
-{ #category : #accessing }
 GtMapperEquirectangularProjection >> scale [
 	^ scale
 ]
 
 { #category : #accessing }
-GtMapperEquirectangularProjection >> scale: anObject [
-	scale := anObject
-]
-
-{ #category : #accessing }
-GtMapperEquirectangularProjection >> tanslation [
-	^ tanslation
-]
-
-{ #category : #accessing }
-GtMapperEquirectangularProjection >> tanslation: anObject [
-	tanslation := anObject
-]
-
-{ #category : #accessing }
-GtMapperEquirectangularProjection >> yaw [
-	^ yaw
-]
-
-{ #category : #accessing }
-GtMapperEquirectangularProjection >> yaw: anObject [
-	yaw := anObject
+GtMapperEquirectangularProjection >> scale: aNumber [
+	scale := aNumber
 ]

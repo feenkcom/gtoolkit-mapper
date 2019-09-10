@@ -16,6 +16,11 @@ GtMapperSpherePoint class >> longitude: aLongitude latitude: aLatitude [
 	^ self new longitude: aLongitude; latitude: aLatitude
 ]
 
+{ #category : #converting }
+GtMapperSpherePoint >> asPoint [
+	^ self longitude @ self latitude
+]
+
 { #category : #initialization }
 GtMapperSpherePoint >> initialize [
 	super initialize.

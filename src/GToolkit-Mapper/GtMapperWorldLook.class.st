@@ -2,7 +2,8 @@ Class {
 	#name : #GtMapperWorldLook,
 	#superclass : #BrLook,
 	#instVars : [
-		'geographicalObjects'
+		'geographicalObjects',
+		'extentChangeHandler'
 	],
 	#category : #'GToolkit-Mapper-Widget - Look'
 }
@@ -20,13 +21,49 @@ GtMapperWorldLook >> addObject: anObjectModel [
 
 { #category : #initialization }
 GtMapperWorldLook >> initialize [
+	| shouldScaleWidth shouldScaleHeight |
 	super initialize.
+	
+	shouldScaleWidth := true.
+	shouldScaleHeight := true.
 
 	geographicalObjects := IdentityDictionary new.
+	extentChangeHandler := BlEventHandler on: BlElementExtentChangedEvent do: [ :anEvent |		
+		(shouldScaleWidth or: [ shouldScaleHeight ])
+			ifTrue: [
+				| aWorldMap anExtent aScale |
+				aWorldMap := anEvent currentTarget.
+				anExtent := aWorldMap extent.
+				
+				aScale := 1.0.
+				
+				(shouldScaleWidth and: [ shouldScaleHeight ])
+					ifTrue: [ aScale := (anExtent / (360.0 @ 140)) min ].
+				
+				(shouldScaleWidth and: [ shouldScaleHeight not ])
+					ifTrue: [ aScale := (anExtent x / 360.0) ].
+				
+				(shouldScaleWidth not and: [ shouldScaleHeight ])
+					ifTrue: [ aScale := (anExtent y / 140.0) ].
+
+				(aWorldMap scale closeTo: aScale precision: 0.01)
+					ifFalse: [ aWorldMap scale: aScale ] ] ].
 	
 	self
 		addChangeProperty: #(widgetContent layout)
-		with: [ BlFitLayout new ]
+		with: [ BlFitLayout new ].
+	
+	self addChange: (BrLookChange new
+		up: [ :e | self widget addEventHandler: extentChangeHandler ];
+		down: [ :e | self widget removeEventHandler: extentChangeHandler ]).
+	
+	self add: (BrLayoutResizerLook inherit
+		hMatchParent: [ shouldScaleWidth := true ];
+		hExact: [ shouldScaleWidth := true ];
+		hFitContent: [ shouldScaleWidth := false ];
+		vMatchParent: [ shouldScaleHeight := true ];
+		vExact: [ shouldScaleHeight := true ];
+		vFitContent: [ shouldScaleHeight := false ])
 ]
 
 { #category : #initialization }
@@ -41,7 +78,9 @@ GtMapperWorldLook >> initializeListeners [
 GtMapperWorldLook >> initializeRequests [
 	super initializeRequests.
 
-	self request: GtMapperWorldObjectsRequest new
+	self request: GtMapperWorldObjectsRequest new.
+	self request: GtMapperWorldCenterRequest new.
+	self request: GtMapperWorldScaleRequest new
 ]
 
 { #category : #private }

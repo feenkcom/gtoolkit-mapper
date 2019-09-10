@@ -4,6 +4,8 @@ I represent a world map and know about my countries
 Class {
 	#name : #GtMapperWorld,
 	#superclass : #BlElement,
+	#traits : 'TBrLayoutResizable',
+	#classTraits : 'TBrLayoutResizable classTrait',
 	#instVars : [
 		'countries'
 	],
@@ -20,24 +22,48 @@ GtMapperWorld >> addMarker: aGtMapperMarkerWidget [
 	self viewModel addGeographicalObject: aGtMapperMarkerWidget viewModel
 ]
 
-{ #category : #converting }
-GtMapperWorld >> asElement [
-	| aWorldElement |
-	
-	aWorldElement := BlElement new.
-	aWorldElement layout: BlFitLayout new.
-	aWorldElement constraintsDo: [ :c |
-		c horizontal fitContent.
-		c vertical fitContent ].
-	
-	aWorldElement addChildren: (self countries collect: #asElement).
-	
-	^ aWorldElement asPannableElement
+{ #category : #'api - world' }
+GtMapperWorld >> center [
+	<return: #Point>
+
+	^ self viewModel center asPoint
+]
+
+{ #category : #'api - world' }
+GtMapperWorld >> center: aPoint [
+	self viewModel center: (GtMapperSpherePoint longitude: aPoint x latitude: aPoint y)
 ]
 
 { #category : #initialization }
 GtMapperWorld >> initialize [
 	super initialize.
 	
-	self viewModel: GtMapperWorldModel new
+	self viewModel: (GtMapperWorldModel new + (BrInteractiveModel new
+		addStates: {
+			BrLayoutHorizontalResizerModel matchParent.
+			BrLayoutVerticalResizerModel matchParent }))
+]
+
+{ #category : #'api - world' }
+GtMapperWorld >> scale [
+	<return: #Number>
+
+	^ self viewModel scale
+]
+
+{ #category : #'api - world' }
+GtMapperWorld >> scale: aNumber [
+	self viewModel scale: aNumber
+]
+
+{ #category : #'api - world' }
+GtMapperWorld >> zoom [
+	<return: #Number>
+
+	^ self viewModel zoom
+]
+
+{ #category : #'api - world' }
+GtMapperWorld >> zoom: aNumber [
+	self viewModel zoom: aNumber
 ]
