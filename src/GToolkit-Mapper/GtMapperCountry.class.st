@@ -10,6 +10,12 @@ Class {
 	#category : #'GToolkit-Mapper-Widget - UI - Countries'
 }
 
+{ #category : #enumerating }
+GtMapperCountry class >> countriesNewDo: aBlock [
+	self allSubclassesDo: [ :aClass |
+		aBlock value: aClass new ]
+]
+
 { #category : #'api - country' }
 GtMapperCountry >> countryContinent [
 	<return: #String>
