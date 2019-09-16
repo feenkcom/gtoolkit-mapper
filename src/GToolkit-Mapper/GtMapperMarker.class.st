@@ -12,6 +12,14 @@ GtMapperMarker >> initialize [
 ]
 
 { #category : #accessing }
+GtMapperMarker >> location [
+	"Return marker location given in world cordinates [lon, lat]"
+	<return: #Point>
+	
+	^ self viewModel geometry asPoint
+]
+
+{ #category : #accessing }
 GtMapperMarker >> location: aPoint [
 	"Set marker location given in world cordinates [lon, lat]"
 	

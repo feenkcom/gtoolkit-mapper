@@ -15,6 +15,11 @@ GtMapperGeoJSONPoint class >> from: aRawPoint [
 	^ self new longitude: aRawPoint first latitude: aRawPoint second
 ]
 
+{ #category : #converting }
+GtMapperGeoJSONPoint >> asPoint [
+	^ self spherePoint asPoint
+]
+
 { #category : #printing }
 GtMapperGeoJSONPoint >> gtDisplayOn: aStream [
 	aStream
