@@ -23,6 +23,11 @@ GtMapperWorld >> addMarker: aGtMapperMarkerWidget [
 ]
 
 { #category : #'api - world' }
+GtMapperWorld >> addRegion: aGtMapperRegionWidget [
+	self viewModel addGeographicalObject: aGtMapperRegionWidget viewModel
+]
+
+{ #category : #'api - world' }
 GtMapperWorld >> center [
 	<return: #Point>
 

@@ -21,6 +21,10 @@ GtMapperGeoJSONGeometry >> gtProjectFor: anAction [
 					sourceElement: button) ] ]
 ]
 
+{ #category : #enumerating }
+GtMapperGeoJSONGeometry >> polygonsDo: aBlock [
+]
+
 { #category : #'api - projection' }
 GtMapperGeoJSONGeometry >> projected: aProjection [
 	"Return a projected version of GeoJSON geometry by applying a given projection"

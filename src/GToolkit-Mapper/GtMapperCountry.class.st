@@ -31,6 +31,13 @@ GtMapperCountry >> countryGeometry [
 ]
 
 { #category : #'api - country' }
+GtMapperCountry >> countryIsoCode [
+	<return: #String>
+
+	^ self viewModel isoCode
+]
+
+{ #category : #'api - country' }
 GtMapperCountry >> countryName [
 	<return: #String>
 

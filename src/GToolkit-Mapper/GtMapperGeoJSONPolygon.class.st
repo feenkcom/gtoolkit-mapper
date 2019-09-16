@@ -45,6 +45,11 @@ GtMapperGeoJSONPolygon >> points: aCollectionOfPoints [
 	points := aCollectionOfPoints
 ]
 
+{ #category : #enumerating }
+GtMapperGeoJSONPolygon >> polygonsDo: aBlock [
+	aBlock value: self
+]
+
 { #category : #'api - projection' }
 GtMapperGeoJSONPolygon >> projected: aProjection [
 	"Return a projected version of GeoJSON geometry by applying a given projection"
