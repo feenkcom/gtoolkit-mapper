@@ -77,6 +77,11 @@ GtMapperWorldModel >> notifyObjectAdded: anObjectModels [
 ]
 
 { #category : #notifying }
+GtMapperWorldModel >> notifyObjectRemoved: anObjectModels [
+	self dispatchEvent: (GtMapperWorldObjectRemoved new geographicalObject: anObjectModels)
+]
+
+{ #category : #notifying }
 GtMapperWorldModel >> notifyObjectsChanged: aCollectionOfObjectModels [
 	self dispatchEvent: (GtMapperWorldObjectsChanged new geographicalObjects: aCollectionOfObjectModels)
 ]
@@ -91,6 +96,18 @@ GtMapperWorldModel >> notifyScaleChanged: aNumber [
 GtMapperWorldModel >> notifyZoomChanged: aNumber [
 	self dispatchEvent: (GtMapperWorldZoomChanged new zoom: aNumber).
 	geographicalObjects do: [ :eachObject | eachObject dispatchEvent: (GtMapperWorldZoomChanged new zoom: aNumber) ]
+]
+
+{ #category : #'api - adding' }
+GtMapperWorldModel >> removeGeographicalObject: anObjectModel [
+	
+	geographicalObjects remove: anObjectModel ifAbsent: [ ^ self ].
+
+	anObjectModel removeEventHandlersSuchThat: [ :eachEventHandler |
+		(eachEventHandler isKindOf: BlEventHandler) and: [
+			{ GtMapperWorldScaleRequest . GtMapperWorldZoomRequest . GtMapperWorldCenterRequest } includes: eachEventHandler eventClass ] ].
+	
+	self notifyObjectRemoved: anObjectModel
 ]
 
 { #category : #accessing }

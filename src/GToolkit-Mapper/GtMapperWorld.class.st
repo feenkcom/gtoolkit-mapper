@@ -50,6 +50,16 @@ GtMapperWorld >> initialize [
 ]
 
 { #category : #'api - world' }
+GtMapperWorld >> removeCountry: aGtMapperCountryWidget [
+	self viewModel removeGeographicalObject: aGtMapperCountryWidget viewModel
+]
+
+{ #category : #'api - world' }
+GtMapperWorld >> removeMarker: aGtMapperMarkerWidget [
+	self viewModel removeGeographicalObject: aGtMapperMarkerWidget viewModel
+]
+
+{ #category : #'api - world' }
 GtMapperWorld >> scale [
 	<return: #Number>
 

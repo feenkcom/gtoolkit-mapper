@@ -71,7 +71,8 @@ GtMapperWorldLook >> initializeListeners [
 	super initializeListeners.
 
 	self when: GtMapperWorldObjectsChanged do: [ :anEvent | self updateObjects: anEvent geographicalObjects ].
-	self when: GtMapperWorldObjectAdded do: [ :anEvent | self addObject: anEvent geographicalObject ]
+	self when: GtMapperWorldObjectAdded do: [ :anEvent | self addObject: anEvent geographicalObject ].
+	self when: GtMapperWorldObjectRemoved do: [ :anEvent | self removeObject: anEvent geographicalObject ]
 ]
 
 { #category : #initialization }
@@ -81,6 +82,13 @@ GtMapperWorldLook >> initializeRequests [
 	self request: GtMapperWorldObjectsRequest new.
 	self request: GtMapperWorldCenterRequest new.
 	self request: GtMapperWorldScaleRequest new
+]
+
+{ #category : #private }
+GtMapperWorldLook >> removeObject: anObjectModel [
+	geographicalObjects
+		at: anObjectModel
+		ifPresent: [ :anObjectWidget | anObjectWidget removeFromParent ]
 ]
 
 { #category : #private }
