@@ -63,10 +63,13 @@ GtMapperGeographicalObjectLook >> updateGeometry: aGtMapperGeometry [
 
 	self widgetDo: [ :aWidget |
 		| aProjection aProjectedGeometry aProjectedCenter |
-		aProjection := GtMapperEquirectangularProjection new scale: scale * zoom.
+		aProjection := GtMapperEquirectangularProjection new
+			scale: scale * zoom;
+			center: center.
 		
 		aProjectedGeometry := aGtMapperGeometry projected: aProjection.
-		aProjectedCenter := (GtMapperGeoJSONPoint new longitude: center longitude latitude: center latitude) projected: aProjection.
+		aProjectedCenter := (GtMapperGeoJSONPoint new longitude: center longitude latitude: center latitude)
+			projected: (GtMapperEquirectangularProjection new scale: scale * zoom).
 		
 		aWidget transformDo: [ :t | t translateBy: aProjectedCenter asPoint negated ].
 		self onProjectedGeometryChanged: aProjectedGeometry widget: aWidget ]

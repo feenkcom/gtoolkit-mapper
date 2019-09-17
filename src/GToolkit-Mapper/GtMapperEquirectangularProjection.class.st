@@ -32,7 +32,7 @@ GtMapperEquirectangularProjection >> projectLongitude: aLongitude latitude: aLat
 	<return: #Point>
 	| x y |
 
-	x := (aLongitude - center longitude) * (center latitude cos).
+	x := (aLongitude - center longitude) * (center latitude degreesToRadians cos).
 	y := (aLatitude - center latitude) negated.
 
 	^ (x @ y) * scale
