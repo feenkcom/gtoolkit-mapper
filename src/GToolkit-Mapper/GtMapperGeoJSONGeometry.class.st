@@ -7,6 +7,28 @@ Class {
 	#category : #'GToolkit-Mapper-Geometries'
 }
 
+{ #category : #'api - geometry' }
+GtMapperGeoJSONGeometry >> center [
+	<return: #GtMapperSpherePoint>
+	| aLatitude aLongitude anAmount |
+
+	anAmount := 0.
+	self polygonsDo: [ :eachPolygon | eachPolygon points do: [ :eachPoint | anAmount := anAmount + 1 ] ].
+	
+	anAmount isZero
+		ifTrue: [ ^ GtMapperSpherePoint new ].
+	
+	aLongitude := 0.
+	aLatitude := 0.
+	anAmount := anAmount asFloat.
+
+	self polygonsDo: [ :eachPolygon | eachPolygon points do: [ :eachPoint |
+		aLongitude := aLongitude + (eachPoint longitude / anAmount).
+		aLatitude := aLatitude + (eachPoint latitude / anAmount) ] ].
+
+	^ GtMapperSpherePoint longitude: aLongitude latitude: aLatitude
+]
+
 { #category : #'gt-extension' }
 GtMapperGeoJSONGeometry >> gtProjectFor: anAction [
 	<gtAction>
