@@ -21,11 +21,10 @@ GtMapperGeoJSONPolygon >> area [
 	| aCircularArrayOfPoints xSum ySum |
 	<return: #Number>
 		
-	self point size < 3
+	self points size < 3
 		ifTrue: [ ^ 0 ].
-		
 
-	aCircularArrayOfPoints := self points, { self point first }.
+	aCircularArrayOfPoints := self points, { self points first }.
 	
 	xSum := ySum := 0.
 	aCircularArrayOfPoints overlappingPairsDo: [ :aPoint :anOtherPoint |
