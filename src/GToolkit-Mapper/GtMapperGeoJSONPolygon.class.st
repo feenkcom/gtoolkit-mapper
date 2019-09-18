@@ -28,10 +28,10 @@ GtMapperGeoJSONPolygon >> area [
 	
 	xSum := ySum := 0.
 	aCircularArrayOfPoints overlappingPairsDo: [ :aPoint :anOtherPoint |
-		xSum := xSum + (aPoint x * anOtherPoint y).
-		ySum := ySum + (aPoint y * anOtherPoint x) ].
+		xSum := xSum + (aPoint longitude * anOtherPoint latitude).
+		ySum := ySum + (aPoint latitude * anOtherPoint longitude) ].
 	
-	^ (xSum - ySum) / 2.0
+	^ ((xSum - ySum) / 2.0) abs
 ]
 
 { #category : #'api - geometry' }
