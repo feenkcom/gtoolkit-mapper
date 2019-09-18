@@ -19,12 +19,12 @@ GtMapperRegion >> deselect [
 	self dispatchEvent: (BrSelectedWish selected: false)
 ]
 
-{ #category : #protocol }
+{ #category : #'api - activation' }
 GtMapperRegion >> disable [
 	self dispatchEvent: (BrActivationWish activated: false)
 ]
 
-{ #category : #protocol }
+{ #category : #'api - activation' }
 GtMapperRegion >> enable [
 	self dispatchEvent: (BrActivationWish activated: true)
 ]

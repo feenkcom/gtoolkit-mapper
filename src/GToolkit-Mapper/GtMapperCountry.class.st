@@ -71,6 +71,16 @@ GtMapperCountry >> deselect [
 	self dispatchEvent: (BrSelectedWish selected: false)
 ]
 
+{ #category : #'api - activation' }
+GtMapperCountry >> disable [
+	self dispatchEvent: (BrActivationWish activated: false)
+]
+
+{ #category : #'api - activation' }
+GtMapperCountry >> enable [
+	self dispatchEvent: (BrActivationWish activated: true)
+]
+
 { #category : #initialization }
 GtMapperCountry >> initialize [
 	super initialize.
