@@ -60,19 +60,20 @@ GtMapperGeographicalObjectLook >> scale: aNumber [
 { #category : #private }
 GtMapperGeographicalObjectLook >> updateGeometry: aGtMapperGeometry [
 	geometry := aGtMapperGeometry.
+	self
+		widgetDo: [ :aWidget | 
+			| aProjection aProjectedGeometry aProjectedOrigin |
+			aProjection := GtMapperEquirectangularProjection new
+				scale: scale * zoom;
+				center: center.
+			aProjectedGeometry := aGtMapperGeometry projected: aProjection.
 
-	self widgetDo: [ :aWidget |
-		| aProjection aProjectedGeometry aProjectedCenter |
-		aProjection := GtMapperEquirectangularProjection new
-			scale: scale * zoom;
-			center: center.
-		
-		aProjectedGeometry := aGtMapperGeometry projected: aProjection.
-		aProjectedCenter := (GtMapperGeoJSONPoint new longitude: center longitude latitude: center latitude)
-			projected: (GtMapperEquirectangularProjection new scale: scale * zoom).
-		
-		aWidget transformDo: [ :t | t translateBy: aProjectedCenter asPoint negated ].
-		self onProjectedGeometryChanged: aProjectedGeometry widget: aWidget ]
+			aProjectedOrigin := (GtMapperGeoJSONPoint new longitude: 0 latitude: 0)
+				projected: (GtMapperEquirectangularProjection new scale: scale * zoom; center: center).
+
+			aWidget
+				transformDo: [ :t | t translateBy: aProjectedOrigin asPoint ].
+			self onProjectedGeometryChanged: aProjectedGeometry widget: aWidget ]
 ]
 
 { #category : #private }
