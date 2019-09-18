@@ -46,7 +46,13 @@ GtMapperWorld >> initialize [
 	self viewModel: (GtMapperWorldModel new + (BrInteractiveModel new
 		addStates: {
 			BrLayoutHorizontalResizerModel matchParent.
-			BrLayoutVerticalResizerModel matchParent }))
+			BrLayoutVerticalResizerModel matchParent })).
+			
+	{ -180 @ 90 . 180 @ -90 } do: [ :eachCorner |
+		self addMarker: (GtMapperMarker new
+			look: GtMapperMarkerLook new;
+			size: 0@0;
+			location: eachCorner) ]
 ]
 
 { #category : #'api - world' }

@@ -38,13 +38,13 @@ GtMapperWorldLook >> initialize [
 				aScale := 1.0.
 				
 				(shouldScaleWidth and: [ shouldScaleHeight ])
-					ifTrue: [ aScale := (anExtent / (360.0 @ 140)) min ].
+					ifTrue: [ aScale := (anExtent / (360.0 @ 180)) min ].
 				
 				(shouldScaleWidth and: [ shouldScaleHeight not ])
 					ifTrue: [ aScale := (anExtent x / 360.0) ].
 				
 				(shouldScaleWidth not and: [ shouldScaleHeight ])
-					ifTrue: [ aScale := (anExtent y / 140.0) ].
+					ifTrue: [ aScale := (anExtent y / 180.0) ].
 
 				(aWorldMap scale closeTo: aScale precision: 0.01)
 					ifFalse: [ aWorldMap scale: aScale ] ] ].
