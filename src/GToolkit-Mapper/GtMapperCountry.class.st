@@ -66,18 +66,27 @@ GtMapperCountry >> defaultCountryProperties [
 	^ self subclassResponsibility
 ]
 
+{ #category : #'api - selection' }
+GtMapperCountry >> deselect [
+	self dispatchEvent: (BrSelectedWish selected: false)
+]
+
 { #category : #initialization }
 GtMapperCountry >> initialize [
 	super initialize.
 	
 	self viewModel: ((GtMapperCountryModel new geometry: self defaultCountryGeometry; properties: self defaultCountryProperties) +
 		BrButtonModel new +
-		BrLabelModel new +
-		BrIconModel new + 
 		(BrInteractiveModel new
 			addStates: {
 				BrActivationModel new.
 				BrPressModel new.
 				BrHoverModel new.
+				BrSelectModel new
 			}))
+]
+
+{ #category : #'api - selection' }
+GtMapperCountry >> select [
+	self dispatchEvent: (BrSelectedWish selected: true)
 ]
