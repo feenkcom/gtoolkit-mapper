@@ -20,6 +20,13 @@ GtMapperGeoJSONPoint >> asPoint [
 	^ self spherePoint asPoint
 ]
 
+{ #category : #'api - geometry' }
+GtMapperGeoJSONPoint >> center [
+	<return: #GtMapperSpherePoint>
+	
+	^ self spherePoint
+]
+
 { #category : #printing }
 GtMapperGeoJSONPoint >> gtDisplayOn: aStream [
 	aStream

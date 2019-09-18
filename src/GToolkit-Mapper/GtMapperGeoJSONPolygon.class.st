@@ -16,6 +16,47 @@ GtMapperGeoJSONPolygon class >> from: aCollectionOfPoints [
 		collect: [ :eachRawPoint | GtMapperGeoJSONPoint from: eachRawPoint ])
 ]
 
+{ #category : #'api - geometry' }
+GtMapperGeoJSONPolygon >> area [
+	| aCircularArrayOfPoints xSum ySum |
+	<return: #Number>
+		
+	self point size < 3
+		ifTrue: [ ^ 0 ].
+		
+
+	aCircularArrayOfPoints := self points, { self point first }.
+	
+	xSum := ySum := 0.
+	aCircularArrayOfPoints overlappingPairsDo: [ :aPoint :anOtherPoint |
+		xSum := xSum + (aPoint x * anOtherPoint y).
+		ySum := ySum + (aPoint y * anOtherPoint x) ].
+	
+	^ (xSum - ySum) / 2.0
+]
+
+{ #category : #'api - geometry' }
+GtMapperGeoJSONPolygon >> center [
+	<return: #GtMapperSpherePoint>
+	| aLatitude aLongitude anAmount |
+
+	anAmount := 0.
+	self points do: [ :eachPoint | anAmount := anAmount + 1 ].
+	
+	anAmount isZero
+		ifTrue: [ ^ GtMapperSpherePoint new ].
+	
+	aLongitude := 0.
+	aLatitude := 0.
+	anAmount := anAmount asFloat.
+
+	self points do: [ :eachPoint |
+		aLongitude := aLongitude + (eachPoint longitude / anAmount).
+		aLatitude := aLatitude + (eachPoint latitude / anAmount) ].
+
+	^ GtMapperSpherePoint longitude: aLongitude latitude: aLatitude
+]
+
 { #category : #'gt-extension' }
 GtMapperGeoJSONPolygon >> gtPointsIn: aView [
 	<gtView>

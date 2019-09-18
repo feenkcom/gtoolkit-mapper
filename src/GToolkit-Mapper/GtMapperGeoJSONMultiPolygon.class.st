@@ -16,11 +16,28 @@ GtMapperGeoJSONMultiPolygon class >> from: aCollectionOfCollectionOfPoints [
 		collect: [ :eachRawPolygon | GtMapperGeoJSONPolygon from: eachRawPolygon ])
 ]
 
+{ #category : #'api- geometry' }
+GtMapperGeoJSONMultiPolygon >> center [
+	<return: #GtMapperSpherePoint>
+
+	self polygons
+		ifEmpty: [ ^ GtMapperSpherePoint new ].
+		
+	^ self largestPolygon center
+]
+
 { #category : #initialization }
 GtMapperGeoJSONMultiPolygon >> initialize [
 	super initialize.
 
 	polygons := #()
+]
+
+{ #category : #'api- geometry' }
+GtMapperGeoJSONMultiPolygon >> largestPolygon [
+	<return: #GtMapperGeoJSONPolygon>
+
+	^ self polygons detectMax: [ :eachPolygon | eachPolygon area ]
 ]
 
 { #category : #accessing }
