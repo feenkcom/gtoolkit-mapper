@@ -45,6 +45,7 @@ GtMapperWorld >> initialize [
 	
 	self viewModel: (GtMapperWorldModel new + (BrInteractiveModel new
 		addStates: {
+			BrHoverModel new.
 			BrLayoutHorizontalResizerModel matchParent.
 			BrLayoutVerticalResizerModel matchParent })).
 			

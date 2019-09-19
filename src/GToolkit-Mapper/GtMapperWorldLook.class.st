@@ -1,6 +1,6 @@
 Class {
 	#name : #GtMapperWorldLook,
-	#superclass : #BrLook,
+	#superclass : #BrInteractiveCommonLook,
 	#instVars : [
 		'geographicalObjects',
 		'extentChangeHandler'
