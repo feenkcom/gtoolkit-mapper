@@ -96,6 +96,16 @@ GtMapperCountry >> initialize [
 			}))
 ]
 
+{ #category : #testing }
+GtMapperCountry >> isDisabled [	
+	^ self isEnabled not
+]
+
+{ #category : #testing }
+GtMapperCountry >> isEnabled [ 	
+	^ (self viewModel request: BrActivationRequest oneWay) enabled
+]
+
 { #category : #'api - selection' }
 GtMapperCountry >> select [
 	self dispatchEvent: (BrSelectedWish selected: true)
