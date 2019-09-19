@@ -8,7 +8,15 @@ Class {
 GtMapperMarker >> initialize [
 	super initialize.
 	
-	self viewModel: (GtMapperMarkerModel new)
+	self viewModel: (GtMapperMarkerModel new +
+		BrButtonModel new +
+		(BrInteractiveModel new
+			addStates: {
+				BrActivationModel new.
+				BrPressModel new.
+				BrHoverModel new.
+				BrSelectModel new
+			}))
 ]
 
 { #category : #accessing }
