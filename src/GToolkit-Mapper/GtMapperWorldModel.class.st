@@ -45,6 +45,12 @@ GtMapperWorldModel >> geographicalObjects: aCollectionOfObjectModels [
 	self notifyObjectsChanged: geographicalObjects
 ]
 
+{ #category : #testing }
+GtMapperWorldModel >> includesGeographicalObject: anObjectModel [
+	
+	^ geographicalObjects includes: anObjectModel
+]
+
 { #category : #initialization }
 GtMapperWorldModel >> initialize [
 	super initialize.

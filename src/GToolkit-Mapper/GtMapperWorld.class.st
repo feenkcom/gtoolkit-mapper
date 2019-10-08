@@ -39,6 +39,11 @@ GtMapperWorld >> center: aPoint [
 	self viewModel center: (GtMapperSpherePoint longitude: aPoint x latitude: aPoint y)
 ]
 
+{ #category : #'api - world' }
+GtMapperWorld >> includesGraphicalObject: aGtMapperGraphicalObject [
+	^ self viewModel includesGeographicalObject: aGtMapperGraphicalObject viewModel
+]
+
 { #category : #initialization }
 GtMapperWorld >> initialize [
 	super initialize.
