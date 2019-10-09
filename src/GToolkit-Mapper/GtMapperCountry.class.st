@@ -13,7 +13,13 @@ Class {
 { #category : #enumerating }
 GtMapperCountry class >> countriesNewDo: aBlock [
 	self allSubclassesDo: [ :aClass |
-		aBlock value: aClass new ]
+		aClass isStandaloneCountry ifTrue: [ 
+			aBlock value: aClass new ] ]
+]
+
+{ #category : #testing }
+GtMapperCountry class >> isStandaloneCountry [
+	^ true
 ]
 
 { #category : #'api - country' }
