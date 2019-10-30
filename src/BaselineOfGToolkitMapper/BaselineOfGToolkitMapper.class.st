@@ -10,7 +10,7 @@ BaselineOfGToolkitMapper >> baseline: spec [
 	spec for: #'common' do: [
 		spec 
 			baseline: 'GToolkit' with: [
-				spec repository: 'github://feenkcom/gtoolkit/src' ].
+				spec repository: 'github://feenkcom/gtoolkit:release/src' ].
 		spec 
 			package: 'GToolkit-Mapper' with: [
 				spec requires: #('GToolkit') ] ].
