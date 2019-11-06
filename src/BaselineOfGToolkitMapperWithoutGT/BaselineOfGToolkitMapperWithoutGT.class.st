@@ -25,7 +25,7 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #BaselineOfGToolkitMapperWithoutGT,
 	#superclass : #BaselineOf,
-	#category : #BaselineOfGToolkitMapper
+	#category : #BaselineOfGToolkitMapperWithoutGT
 }
 
 { #category : #baselines }
