@@ -4,14 +4,14 @@ Class {
 	#category : #BaselineOfGToolkitMapper
 }
 
-{ #category : #baselines }
+{ #category : #baseline }
 BaselineOfGToolkitMapper >> baseline: spec [
 	<baseline>
 	spec for: #'common' do: [
 		spec 
 			baseline: 'GToolkit' with: [
-				spec repository: 'github://feenkcom/gtoolkit:release/src' ];
-			baseline: 'GToolkitMapperWithoutGT' with: [ 
-    			spec repository: 'github://feenkcom/gtoolkit-mapper/src' ]
-	].
+				spec repository: 'github://feenkcom/gtoolkit:v0.7.311/src' ];
+			baseline: 'GToolkitMapperWithoutGT' with: [
+				spec repository: 'github://feenkcom/gtoolkit-mapper:v0.6.6/src' ]. ].
+
 ]
