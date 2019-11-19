@@ -10,8 +10,8 @@ BaselineOfGToolkitMapper >> baseline: spec [
 	spec for: #'common' do: [
 		spec 
 			baseline: 'GToolkit' with: [
-				spec repository: 'github://feenkcom/gtoolkit:v0.7.337/src' ];
+				spec repository: 'github://feenkcom/gtoolkit:v0.7.338/src' ];
 			baseline: 'GToolkitMapperWithoutGT' with: [
-				spec repository: 'github://feenkcom/gtoolkit-mapper:v0.6.23/src' ]. ].
+				spec repository: 'github://feenkcom/gtoolkit-mapper:v0.6.24/src' ]. ].
 
 ]
