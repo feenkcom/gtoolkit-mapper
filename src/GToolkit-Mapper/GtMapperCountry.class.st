@@ -4,6 +4,8 @@ I represent a country
 Class {
 	#name : #GtMapperCountry,
 	#superclass : #BlElement,
+	#traits : 'TBrEnableable',
+	#classTraits : 'TBrEnableable classTrait',
 	#instVars : [
 		'countryName'
 	],
@@ -77,16 +79,6 @@ GtMapperCountry >> deselect [
 	self dispatchEvent: (BrSelectedWish selected: false)
 ]
 
-{ #category : #'api - activation' }
-GtMapperCountry >> disable [
-	self dispatchEvent: (BrEnablementWish enabled: false)
-]
-
-{ #category : #'api - activation' }
-GtMapperCountry >> enable [
-	self dispatchEvent: (BrEnablementWish enabled: true)
-]
-
 { #category : #initialization }
 GtMapperCountry >> initialize [
 	super initialize.
@@ -100,16 +92,6 @@ GtMapperCountry >> initialize [
 				BrHoverModel new.
 				BrSelectModel new
 			}))
-]
-
-{ #category : #testing }
-GtMapperCountry >> isDisabled [	
-	^ self isEnabled not
-]
-
-{ #category : #testing }
-GtMapperCountry >> isEnabled [ 	
-	^ (self viewModel request: BrEnablementRequest oneWay) isEnabled
 ]
 
 { #category : #'api - selection' }
