@@ -79,12 +79,12 @@ GtMapperCountry >> deselect [
 
 { #category : #'api - activation' }
 GtMapperCountry >> disable [
-	self dispatchEvent: (BrActivationWish activated: false)
+	self dispatchEvent: (BrEnablementWish enabled: false)
 ]
 
 { #category : #'api - activation' }
 GtMapperCountry >> enable [
-	self dispatchEvent: (BrActivationWish activated: true)
+	self dispatchEvent: (BrEnablementWish enabled: true)
 ]
 
 { #category : #initialization }
@@ -95,7 +95,7 @@ GtMapperCountry >> initialize [
 		BrButtonModel new +
 		(BrInteractiveModel new
 			addStates: {
-				BrActivationModel new.
+				BrEnablementModel new.
 				BrPressModel new.
 				BrHoverModel new.
 				BrSelectModel new
@@ -109,7 +109,7 @@ GtMapperCountry >> isDisabled [
 
 { #category : #testing }
 GtMapperCountry >> isEnabled [ 	
-	^ (self viewModel request: BrActivationRequest oneWay) enabled
+	^ (self viewModel request: BrEnablementRequest oneWay) isEnabled
 ]
 
 { #category : #'api - selection' }
