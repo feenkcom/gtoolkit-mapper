@@ -9,7 +9,7 @@ You can load the whole code in Pharo using the following snippet:
 EpMonitor current disable.
 [ 
   Metacello new
-    baseline: 'GToolkitMapper';
+    baseline: 'GToolkitMapperWithoutGT';
     repository: 'github://feenkcom/gtoolkit-mapper/src';
     load
 ] ensure: [ EpMonitor current enable ].
@@ -18,6 +18,6 @@ EpMonitor current disable.
 Or depend on it from your baseline:
 
 ```smalltalk
-spec baseline: 'GToolkitMapper' with: [
+spec baseline: 'GToolkitMapperWithoutGT' with: [
   spec repository: 'github://feenkcom/gtoolkit-mapper/src' ]
 ```
