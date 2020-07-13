@@ -6,13 +6,10 @@ It is an engine for visualizing maps.
 You can load the whole code in GT using the following snippet:
 
 ```smalltalk
-EpMonitor current disable.
-[ 
   Metacello new
     baseline: 'GToolkitMapperWithoutGT';
     repository: 'github://feenkcom/gtoolkit-mapper/src';
     load
-] ensure: [ EpMonitor current enable ].
 ```
 
 Or depend on it from your baseline:
