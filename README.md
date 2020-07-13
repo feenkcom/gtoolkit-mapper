@@ -1,9 +1,9 @@
-# gtoolkit-mapper
-GToolkit interactive maps
+# Mapper for Glamorous Toolkit
+It is an engine for visualizing maps.
 
 ## How to load
 
-You can load the whole code in Pharo using the following snippet:
+You can load the whole code in GT using the following snippet:
 
 ```smalltalk
 EpMonitor current disable.
