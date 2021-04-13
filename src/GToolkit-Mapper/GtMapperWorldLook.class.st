@@ -1,6 +1,6 @@
 Class {
 	#name : #GtMapperWorldLook,
-	#superclass : #BrInteractiveCommonLook,
+	#superclass : #BrInteractiveCommonAptitude,
 	#instVars : [
 		'geographicalObjects',
 		'extentChangeHandler'
@@ -57,7 +57,7 @@ GtMapperWorldLook >> initialize [
 		up: [ :e | self widget addEventHandler: extentChangeHandler ];
 		down: [ :e | self widget removeEventHandler: extentChangeHandler ]).
 	
-	self add: (BrLayoutResizerLook inherit
+	self add: (BrLayoutResizerAptitude inherit
 		hMatchParent: [ shouldScaleWidth := true ];
 		hExact: [ shouldScaleWidth := true ];
 		hFitContent: [ shouldScaleWidth := false ];

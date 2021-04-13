@@ -1,6 +1,6 @@
 Class {
 	#name : #GtMapperGeographicalObjectLook,
-	#superclass : #BrInteractiveCommonLook,
+	#superclass : #BrInteractiveCommonAptitude,
 	#instVars : [
 		'scale',
 		'center',
