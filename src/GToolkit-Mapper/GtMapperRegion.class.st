@@ -37,7 +37,7 @@ GtMapperRegion >> initialize [
 		addStates: {
 			BrHoverModel new.
 			BrSelectModel new.
-			BrActivationModel new
+			BrEnablementModel new
 	}))
 ]
 
@@ -48,7 +48,7 @@ GtMapperRegion >> isDisabled [
 
 { #category : #testing }
 GtMapperRegion >> isEnabled [ 	
-	^ (self viewModel request: BrActivationRequest oneWay) enabled
+	^ (self viewModel request: BrEnablementRequest oneWay) isEnabled
 ]
 
 { #category : #'api - selection' }

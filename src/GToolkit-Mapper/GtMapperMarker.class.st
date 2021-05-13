@@ -12,7 +12,7 @@ GtMapperMarker >> initialize [
 		BrButtonModel new +
 		(BrInteractiveModel new
 			addStates: {
-				BrActivationModel new.
+				BrEnablementModel new.
 				BrPressModel new.
 				BrHoverModel new.
 				BrSelectModel new

@@ -4,6 +4,8 @@ I represent a country
 Class {
 	#name : #GtMapperCountry,
 	#superclass : #BlElement,
+	#traits : 'TBrEnableable',
+	#classTraits : 'TBrEnableable classTrait',
 	#instVars : [
 		'countryName'
 	],
@@ -77,16 +79,6 @@ GtMapperCountry >> deselect [
 	self dispatchEvent: (BrSelectedWish selected: false)
 ]
 
-{ #category : #'api - activation' }
-GtMapperCountry >> disable [
-	self dispatchEvent: (BrActivationWish activated: false)
-]
-
-{ #category : #'api - activation' }
-GtMapperCountry >> enable [
-	self dispatchEvent: (BrActivationWish activated: true)
-]
-
 { #category : #initialization }
 GtMapperCountry >> initialize [
 	super initialize.
@@ -95,21 +87,11 @@ GtMapperCountry >> initialize [
 		BrButtonModel new +
 		(BrInteractiveModel new
 			addStates: {
-				BrActivationModel new.
+				BrEnablementModel new.
 				BrPressModel new.
 				BrHoverModel new.
 				BrSelectModel new
 			}))
-]
-
-{ #category : #testing }
-GtMapperCountry >> isDisabled [	
-	^ self isEnabled not
-]
-
-{ #category : #testing }
-GtMapperCountry >> isEnabled [ 	
-	^ (self viewModel request: BrActivationRequest oneWay) enabled
 ]
 
 { #category : #'api - selection' }
