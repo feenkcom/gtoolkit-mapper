@@ -58,12 +58,12 @@ GtMapperWorldLook >> initialize [
 		down: [ :e | self widget removeEventHandler: extentChangeHandler ]).
 	
 	self add: (BrLayoutResizerAptitude inherit
-		hMatchParent: [ shouldScaleWidth := true ];
-		hExact: [ shouldScaleWidth := true ];
-		hFitContent: [ shouldScaleWidth := false ];
-		vMatchParent: [ shouldScaleHeight := true ];
-		vExact: [ shouldScaleHeight := true ];
-		vFitContent: [ shouldScaleHeight := false ])
+		matchParentToMatchParent: [ shouldScaleWidth := true ];
+		hExactToFitContent: [ shouldScaleWidth := true ];
+		hFitContentToFitContent: [ shouldScaleWidth := false ];
+		vMatchParentToMatchParent: [ shouldScaleHeight := true ];
+		vExactToFitContent: [ shouldScaleHeight := true ];
+		vFitContentToFitContent: [ shouldScaleHeight := false ])
 ]
 
 { #category : #initialization }

@@ -21,12 +21,12 @@ GtMapperRegion >> deselect [
 
 { #category : #'api - activation' }
 GtMapperRegion >> disable [
-	self dispatchEvent: (BrActivationWish activated: false)
+	self dispatchEvent:((BrEnablementWish enabled: false))
 ]
 
 { #category : #'api - activation' }
 GtMapperRegion >> enable [
-	self dispatchEvent: (BrActivationWish activated: true)
+	self dispatchEvent: ((BrEnablementWish enabled: true))
 ]
 
 { #category : #initialization }

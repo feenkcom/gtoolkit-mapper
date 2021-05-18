@@ -47,18 +47,24 @@ GtMapperWorld >> includesGraphicalObject: aGtMapperGraphicalObject [
 { #category : #initialization }
 GtMapperWorld >> initialize [
 	super initialize.
-	
-	self viewModel: (GtMapperWorldModel new + (BrInteractiveModel new
-		addStates: {
-			BrHoverModel new.
-			BrLayoutHorizontalResizerModel matchParent.
-			BrLayoutVerticalResizerModel matchParent })).
-			
-	{ -180 @ 90 . 180 @ -90 } do: [ :eachCorner |
-		self addMarker: (GtMapperMarker new
-			look: GtMapperMarkerLook new;
-			size: 0@0;
-			location: eachCorner) ]
+	self
+		viewModel:
+			GtMapperWorldModel new
+				+
+					(BrInteractiveModel new
+						addStates:
+							{BrHoverModel new.
+							BrLayoutHorizontalResizerModel matchParent.
+							BrLayoutVerticalResizerModel matchParent}).
+	{(-180 @ 90).
+	(180 @ -90)}
+		do: [ :eachCorner | 
+			self
+				addMarker:
+					(GtMapperMarker new
+						aptitude: GtMapperMarkerLook new;
+						size: 0 @ 0;
+						location: eachCorner) ]
 ]
 
 { #category : #'api - world' }
