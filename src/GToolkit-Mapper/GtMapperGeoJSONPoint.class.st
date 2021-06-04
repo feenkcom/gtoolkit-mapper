@@ -1,5 +1,7 @@
 "
 I am GeoJSON's Point geometry and encode longitude, latitude in format [lon, lat]
+
+
 "
 Class {
 	#name : #GtMapperGeoJSONPoint,
