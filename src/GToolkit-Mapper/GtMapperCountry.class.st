@@ -1,5 +1,7 @@
 "
 I represent a country
+
+
 "
 Class {
 	#name : #GtMapperCountry,

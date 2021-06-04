@@ -1,5 +1,7 @@
 "
 All my subclasses live in geo-coordinates: (longitude, latitude)
+
+
 "
 Class {
 	#name : #GtMapperGeoJSONGeometry,

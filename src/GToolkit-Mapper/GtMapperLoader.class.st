@@ -1,5 +1,7 @@
 "
 I load a GeoJSon and generate country classes out of it
+
+
 "
 Class {
 	#name : #GtMapperLoader,

@@ -1,5 +1,7 @@
 "
 Projected geometry lives in screen coordinates
+
+
 "
 Class {
 	#name : #GtMapperProjectedGeometry,

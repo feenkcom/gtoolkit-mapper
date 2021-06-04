@@ -1,5 +1,7 @@
 "
 I am GeoJSON's Polygon geometry 
+
+
 "
 Class {
 	#name : #GtMapperGeoJSONPolygon,

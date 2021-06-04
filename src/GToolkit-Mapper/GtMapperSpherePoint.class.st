@@ -1,5 +1,7 @@
 "
 I represent a pount on a sphere defined by (longitude,  latitude)
+
+
 "
 Class {
 	#name : #GtMapperSpherePoint,
