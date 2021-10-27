@@ -15,7 +15,7 @@ GtMapperProjectedPoint class >> fromPoint: aPoint [
 
 { #category : #converting }
 GtMapperProjectedPoint >> asBlocGeometry [
-	<return: #BlGeometry>
+	<return: #BlElementGeometry>
 
 	^ BlCircle new
 ]

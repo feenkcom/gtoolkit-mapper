@@ -9,7 +9,7 @@ Class {
 
 { #category : #converting }
 GtMapperProjectedMultiPolygon >> asBlocGeometry [
-	<return: #BlGeometry>
+	<return: #BlElementGeometry>
 
 	^ BlMultiPolygon polygons: (self translatedBy: self topLeft negated) asPoints
 ]
