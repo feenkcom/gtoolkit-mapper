@@ -11,7 +11,7 @@ Class {
 
 { #category : #converting }
 GtMapperGeoJSONGeometry >> asBlocGeometry [
-	<return: #BlGeometry>
+	<return: #BlElementGeometry>
 
 	^ self shouldNotImplement
 ]

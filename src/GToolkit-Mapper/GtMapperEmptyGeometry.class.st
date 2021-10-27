@@ -6,7 +6,7 @@ Class {
 
 { #category : #converting }
 GtMapperEmptyGeometry >> asBlocGeometry [
-	<return: #BlGeometry>
+	<return: #BlElementGeometry>
 
 	^ BlRectangle new
 ]

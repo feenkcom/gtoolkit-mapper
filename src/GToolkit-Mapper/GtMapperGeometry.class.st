@@ -11,7 +11,7 @@ Class {
 
 { #category : #converting }
 GtMapperGeometry >> asBlocGeometry [
-	<return: #BlGeometry>
+	<return: #BlElementGeometry>
 
 	^ self subclassResponsibility
 ]
