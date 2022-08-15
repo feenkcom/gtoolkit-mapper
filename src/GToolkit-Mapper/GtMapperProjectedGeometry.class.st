@@ -9,6 +9,15 @@ Class {
 	#category : #'GToolkit-Mapper-Geometries'
 }
 
+{ #category : #converting }
+GtMapperProjectedGeometry >> asElement [
+	^ BlElement new
+			size: self extent;
+			geometry: self asBlocGeometry;
+			background: (Color gray alpha: 0.4);
+			asScalableElement
+]
+
 { #category : #geometry }
 GtMapperProjectedGeometry >> bottomLeft [
 	<return: #Number>
@@ -51,33 +60,24 @@ GtMapperProjectedGeometry >> gtGeometryIn: aView [
 	^ aView explicit
 		title: 'Geometry';
 		priority: 10;
-		stencil: [ BlElement new
-			size: self extent;
-			geometry: self asBlocGeometry;
-			background: (Color gray alpha: 0.4);
-			asScalableElement ]
+		stencil: [ self asElement ]
 ]
 
 { #category : #'gt-extension' }
 GtMapperProjectedGeometry >> gtPropertiesIn: aView [
 	<gtView>
-	
-	^ aView columnedList 
+	^ aView columnedList
 		title: 'Properties';
 		priority: 20;
-		items: [ {
-			#bounds -> self bounds.
-			#extent -> self extent.
-			#center -> self center.
-			#topLeft -> self topLeft.
-			#topRight -> self topRight.
-			#bottomRight -> self bottomRight.
-			#bottomLeft -> self bottomLeft
-		} ];
-		column: 'Name' 
-			item: [ :each | each name ];
-		column: 'Value' 
-			item: [ :each | each value gtDisplayText ]
+		items: [ {#bounds -> self bounds.
+				#extent -> self extent.
+				#center -> self center.
+				#topLeft -> self topLeft.
+				#topRight -> self topRight.
+				#bottomRight -> self bottomRight.
+				#bottomLeft -> self bottomLeft} ];
+		column: 'Name' text: [ :each | each name ];
+		column: 'Value' text: [ :each | each value gtDisplayText ]
 ]
 
 { #category : #geometry }

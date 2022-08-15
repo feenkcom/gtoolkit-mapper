@@ -26,15 +26,16 @@ GtMapperGeoJSONGeometry >> center [
 { #category : #'gt-extension' }
 GtMapperGeoJSONGeometry >> gtProjectFor: anAction [
 	<gtAction>
-	^ anAction explicit stencil: [
-		BrButton new
-			look: BrGlamorousButtonWithIconLook;
-			icon: BrGlamorousIcons fromhere asElement;
-			label: 'Project';
-			action: [ :button |
-				button fireEvent: (GtPhlowObjectToSpawn new
-					object: (self projected: GtMapperEquirectangularProjection new);
-					sourceElement: button) ] ]
+	^ anAction explicit
+		stencil: [ BrButton new
+				aptitude: BrGlamorousButtonWithIconAptitude;
+				icon: BrGlamorousIcons fromhere asElement;
+				label: 'Project';
+				action: [ :button | 
+					button
+						fireEvent: (GtPhlowObjectToSpawn new
+								object: (self projected: GtMapperEquirectangularProjection new);
+								sourceElement: button) ] ]
 ]
 
 { #category : #enumerating }

@@ -1,5 +1,5 @@
 Class {
-	#name : #GtMapperProjectedPolygon,
+	#name : #GtMapperProjectedPolyline,
 	#superclass : #GtMapperProjectedGeometry,
 	#instVars : [
 		'projectedPoints'
@@ -8,19 +8,29 @@ Class {
 }
 
 { #category : #converting }
-GtMapperProjectedPolygon >> asBlocGeometry [
+GtMapperProjectedPolyline >> asBlocGeometry [
 	<return: #BlElementGeometry>
 
-	^ BlPolygon vertices: (self translatedBy: self topLeft negated) asPoints
+	^ BlPolyline vertices: (self translatedBy: self topLeft negated) asPoints
 ]
 
 { #category : #converting }
-GtMapperProjectedPolygon >> asPoints [
+GtMapperProjectedPolyline >> asElement [
+	^ BlElement new
+			size: self extent;
+			geometry: self asBlocGeometry;
+			background: (Color transparent);
+			border: (BlBorder builder paint: Color red; width: 0.01; build);
+			asScalableElement
+]
+
+{ #category : #converting }
+GtMapperProjectedPolyline >> asPoints [
 	^ self projectedPoints collect: #asPoint
 ]
 
 { #category : #geometry }
-GtMapperProjectedPolygon >> bottomRight [
+GtMapperProjectedPolyline >> bottomRight [
 	<return: #Point>
 	| x y |
 	
@@ -36,7 +46,7 @@ GtMapperProjectedPolygon >> bottomRight [
 ]
 
 { #category : #'gt-extension' }
-GtMapperProjectedPolygon >> gtPointsIn: aView [
+GtMapperProjectedPolyline >> gtPointsIn: aView [
 	<gtView>
 	
 	^ aView list 
@@ -46,24 +56,24 @@ GtMapperProjectedPolygon >> gtPointsIn: aView [
 ]
 
 { #category : #initialization }
-GtMapperProjectedPolygon >> initialize [
+GtMapperProjectedPolyline >> initialize [
 	super initialize.
 	
 	projectedPoints := #()
 ]
 
 { #category : #accessing }
-GtMapperProjectedPolygon >> projectedPoints [
+GtMapperProjectedPolyline >> projectedPoints [
 	^ projectedPoints
 ]
 
 { #category : #accessing }
-GtMapperProjectedPolygon >> projectedPoints: anObject [
+GtMapperProjectedPolyline >> projectedPoints: anObject [
 	projectedPoints := anObject
 ]
 
 { #category : #geometry }
-GtMapperProjectedPolygon >> topLeft [
+GtMapperProjectedPolyline >> topLeft [
 	<return: #Point>
 	| x y |
 	
@@ -79,7 +89,7 @@ GtMapperProjectedPolygon >> topLeft [
 ]
 
 { #category : #converting }
-GtMapperProjectedPolygon >> translatedBy: aPoint [
+GtMapperProjectedPolyline >> translatedBy: aPoint [
 	^ self class new 
 		projectedPoints: (self projectedPoints collect: [ :eachPoint | 
 			eachPoint translatedBy: aPoint ])

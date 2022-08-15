@@ -8,7 +8,7 @@ Class {
 GtMapperEmptyGeometry >> asBlocGeometry [
 	<return: #BlElementGeometry>
 
-	^ BlRectangle new
+	^ BlRectangleGeometry new
 ]
 
 { #category : #'api - projection' }
