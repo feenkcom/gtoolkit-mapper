@@ -40,6 +40,17 @@ GtMapperProjectedPoint >> initialize [
 	y := 0
 ]
 
+{ #category : #accessing }
+GtMapperProjectedPoint >> printOn: aStream [ 
+	super printOn: aStream.
+	
+	aStream parenthesize: [
+		aStream 
+			print: self x;
+			<< ', ';
+			print: self y ]
+]
+
 { #category : #geometry }
 GtMapperProjectedPoint >> topLeft [
 	<return: #Point>
