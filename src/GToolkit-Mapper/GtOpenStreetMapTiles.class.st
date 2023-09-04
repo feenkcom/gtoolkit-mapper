@@ -14,6 +14,17 @@ GtOpenStreetMapTiles >> cacheDir [
 ]
 
 { #category : #accessing }
+GtOpenStreetMapTiles >> filenameForTileNumber: point zoom: zoom [
+	<return: #AbstractFileReference>
+	| tileFilename |
+
+	tileFilename := self cacheDir / (zoom asString, '_', point x asString, '_', point y asString, '.png').
+	tileFilename exists ifFalse:
+		[ PNGReadWriter putForm: (ZnEasy  getPng: (self getUrlTileNumber: point zoom: zoom)) onFileNamed: tileFilename ].
+	^ tileFilename
+]
+
+{ #category : #accessing }
 GtOpenStreetMapTiles >> getCoordinatesForX: xTile y: yTile zoom: zoom [
 	"Answer longitude @ latitude degrees"
 	<return: #Point>
@@ -56,6 +67,13 @@ GtOpenStreetMapTiles >> getUrlLat: latDeg long: longDeg zoom: zoom [
 	| point |
 
 	point := self getTileNumberLat: latDeg long: longDeg zoom: zoom.
+	^ self getUrlTileNumber: point zoom: zoom.
+]
+
+{ #category : #accessing }
+GtOpenStreetMapTiles >> getUrlTileNumber: point zoom: zoom [
+	<return: #String>
+
 	^ 'https://tile.openstreetmap.de/', zoom asString, '/', point x asString, '/', point y asString, '.png'.
 ]
 
