@@ -42,3 +42,15 @@ GtOsmMarker >> coordinate: aPoint [
 
 	coordinate := aPoint
 ]
+
+{ #category : #accessing }
+GtOsmMarker >> osmUrl [
+	"Answer an OSM URL at the receiver's location"
+
+	^ String streamContents: [ :stream |
+		stream
+			<< 'https://www.openstreetmap.org/#map=15/';
+			<< self coordinate y asString;
+			<< '/';
+			<< self coordinate x asString ]
+]
