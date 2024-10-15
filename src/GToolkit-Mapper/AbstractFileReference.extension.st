@@ -4,8 +4,8 @@ Extension { #name : #AbstractFileReference }
 AbstractFileReference >> gtOsmGpxFor: aView [
 	<gtView>
 
-	self extension = #gpx ifFalse: [ ^ aView empty ].
-	^ aView forward 
+	self extension = 'gpx' ifFalse: [ ^ aView empty ].
+	^ aView forward
 		title: 'GPX';
 		priority: 20;
 		object: [ GtOsmGpxTrack filename: self ];
